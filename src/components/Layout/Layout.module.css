@@ -1,0 +1,5 @@
+.main {
+    background: url(/public/img/main/Background.svg) no-repeat center / cover,
+        #121829;
+    height: 200vh;
+}

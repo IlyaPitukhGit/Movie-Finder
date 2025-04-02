@@ -1,0 +1,35 @@
+.header {
+    padding: 1rem 0;
+    background: rgba(18, 24, 41, 0.8);
+    backdrop-filter: blur(20px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav {
+}
+.nav__list {
+    display: flex;
+    column-gap: 3rem;
+}
+.nav__item {
+}
+
+.nav__item:last-child {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.nav__link {
+    composes: link-regular from global;
+    color: var(--Grey-200, #a8aebf);
+}
