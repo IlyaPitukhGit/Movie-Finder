@@ -17,22 +17,3 @@
     color: var(--Grey-300, #8e95a9);
     margin-bottom: 5rem;
 }
-.button__container {
-    display: flex;
-    padding: 8px;
-}
-
-.active {
-    composes: link-regular from global;
-    border-radius: 8px;
-    background: var(--Primary-400, #7b6ef6);
-    color: var(--Primary-50, #ebe9fe);
-    padding: 0.5rem 2rem;
-}
-
-.link {
-    composes: link-regular from global;
-    color: var(--Grey-300, #8e95a9);
-    padding: 0.5rem 2rem;
-    background-color: transparent;
-}

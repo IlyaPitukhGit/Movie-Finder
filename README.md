@@ -22,4 +22,3 @@
 -   **Custom Hooks** – For API request handling
 -   **CSS Modules / Tailwind CSS** – For styling
 -   **useMemo, useCallback** – Performance optimization
-    > > > > > > > origin/main

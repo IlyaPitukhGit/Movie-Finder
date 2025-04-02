@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-
+import SelectCategory from "../../components/SelectCategory/SelectCategory";
+import MoviesList from "../../components/MovieList/MovieList";
 import s from "./home.module.css";
 
 function Home() {
@@ -15,32 +16,8 @@ function Home() {
                         porro, culpa placeat ea distinctio ducimus. Doloribus,
                         consectetur recusandae.
                     </p>
-                    <div className={s.button__container}>
-                        <NavLink
-                            className={({ isActive }) =>
-                                isActive ? s.active : s.link
-                            }
-                            to="/all"
-                        >
-                            All
-                        </NavLink>
-                        <NavLink
-                            className={({ isActive }) =>
-                                isActive ? s.active : s.link
-                            }
-                            to="/movies"
-                        >
-                            Movies
-                        </NavLink>
-                        <NavLink
-                            className={({ isActive }) =>
-                                isActive ? s.active : s.link
-                            }
-                            to="/TV-shows"
-                        >
-                            TV Shows
-                        </NavLink>
-                    </div>
+                    <SelectCategory />
+                    <MoviesList />
                 </div>
             </div>
         </section>
