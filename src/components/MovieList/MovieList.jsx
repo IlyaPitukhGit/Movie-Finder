@@ -1,6 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetchData";
 
+import s from "./movieList.module.css";
+
+import MovieCard from "../MovieCard/MovieCard";
+
 const MoviesList = () => {
     const [searchParams] = useSearchParams();
     const category = searchParams.get("category") ?? "all";
@@ -27,10 +31,12 @@ const MoviesList = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <ul>
-            {data?.results?.map((movie) => (
-                <li key={movie.id}>{movie.title || movie.name}</li>
-            ))}
+        <ul className={s.movie__list}>
+            {data?.results?.map((movie) => {
+                console.log(movie);
+
+                return <MovieCard key={movie.id} movie={movie} />;
+            })}
         </ul>
     );
 };

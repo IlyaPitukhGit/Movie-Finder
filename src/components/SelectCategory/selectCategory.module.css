@@ -5,6 +5,7 @@
     background: var(--Black-20, rgba(0, 0, 0, 0.2));
     backdrop-filter: blur(40px);
     max-width: max-content;
+    margin-bottom: 6rem;
 }
 
 .link {

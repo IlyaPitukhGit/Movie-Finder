@@ -1,0 +1,35 @@
+.card {
+    padding: 8px 8px 16px 8px;
+    border-radius: 0.75rem;
+    background: rgba(32, 40, 62, 0.8);
+    backdrop-filter: blur(40px);
+    position: relative;
+}
+.card__rating {
+    display: flex;
+    position: absolute;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--Black-65, rgba(0, 0, 0, 0.65));
+    backdrop-filter: blur(4px);
+    column-gap: 0.25rem;
+    top: 1rem;
+    left: 1rem;
+}
+.card__ratingStar {
+}
+.card__ratingText {
+    color: var(--Warning-500, #ffad49);
+    composes: body-regular from global;
+}
+.card__img {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    height: 25rem;
+    object-fit: cover;
+}
+.card__title {
+    composes: link-regular from global;
+    color: var(--Grey-50, #ebeef5);
+}
