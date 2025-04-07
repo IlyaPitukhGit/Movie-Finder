@@ -33,8 +33,6 @@ const MoviesList = () => {
     return (
         <ul className={s.movie__list}>
             {data?.results?.map((movie) => {
-                console.log(movie);
-
                 return <MovieCard key={movie.id} movie={movie} />;
             })}
         </ul>

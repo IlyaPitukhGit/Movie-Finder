@@ -51,16 +51,16 @@ const Icon = ({ name, size = 24 }) => {
                     stroke="#8E95A9"
                     stroke-width="1.5"
                     stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 <path
                     d="M3.5 12H20.33"
                     stroke="#8E95A9"
-                    stroke-width="1.5"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
             </svg>
         ),
