@@ -1,21 +1,27 @@
 import { NavLink } from "react-router-dom";
 
+import s from "./movieHeader.module.css";
+
 function MovieHeader({ data }) {
-    const { backdrop_path } = data;
     if (!data) return <p>Loading content...</p>;
+    const { backdrop_path, title, name, poster_path } = data;
+    console.log(data);
 
     const image = backdrop_path
-        ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
+        ? `https://image.tmdb.org/t/p/w1280${backdrop_path}`
         : "https://sd.keepcalms.com/i/keep-calm-poster-not-found.png";
     return (
-        <div className="details__header">
+        <div className={s.details__header}>
             <div
-                className="details__background"
-                style={{ backgroundImage: image }}
+                className={s.details__background}
+                style={{
+                    background: `linear-gradient(180deg, rgba(54, 44, 146, 0.40) 0%, rgba(18, 98, 151, 0.40) 100%), url(${image}) no-repeat 50% 20% / cover`,
+                }}
             >
-                <div className="details__name">
-                    <NavLink></NavLink>/ <NavLink></NavLink>
-                    <h1 className="details__title"></h1>
+                <div className={s.details__name}>
+                    <NavLink className={s.details_breadLink}>Home</NavLink> /{" "}
+                    <NavLink className={s.details_breadLink}>Movies</NavLink>
+                    <h1 className={s.details__title}>{title ?? name}</h1>
                 </div>
             </div>
         </div>

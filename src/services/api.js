@@ -22,22 +22,3 @@ export const fetchData = async (endpoint) => {
         throw error;
     }
 };
-
-// export const fetchMovieDetails = async (id) => {
-//     const response = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
-//     return response.json();
-// };
-
-// export const fetchMovieCast = async (id) => {
-//     const response = await fetch(
-//         `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`
-//     );
-//     return response.json();
-// };
-
-// export const fetchMovieReviews = async (id) => {
-//     const response = await fetch(
-//         `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`
-//     );
-//     return response.json();
-// };
