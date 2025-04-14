@@ -6,8 +6,10 @@ import s from "./movieDetails.module.css";
 import MovieHeader from "../../components/MovieHeader/MovieHeader";
 import MovieContent from "../../components/MovieContent/MovieContent";
 function MovieDetails() {
-    const { "movie-id": movieId } = useParams();
-    const endpoint = `/movie/${movieId}?language=en-US`;
+    const { type, movieId } = useParams();
+
+    const endpoint = `/${type}/${movieId}?language=en-US`;
+
     const { data, loading, error } = useFetchData(endpoint);
 
     return (

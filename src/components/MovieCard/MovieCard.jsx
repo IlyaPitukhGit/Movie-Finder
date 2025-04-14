@@ -11,6 +11,7 @@ function MovieCard({
         original_title,
         poster_path,
         vote_average,
+        media_type,
     },
 }) {
     const image = poster_path
@@ -19,7 +20,7 @@ function MovieCard({
 
     return (
         <li className={s.card}>
-            <Link to={`/details/${id}`}>
+            <Link to={`/details/${media_type}/${id}`}>
                 <div className={s.card__rating}>
                     <img
                         src="/img/movieCard/star.svg"
