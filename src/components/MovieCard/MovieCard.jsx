@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import s from "./movieCard.module.css";
 
@@ -14,13 +14,18 @@ function MovieCard({
         media_type,
     },
 }) {
+    const location = useLocation();
+
     const image = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
         : "https://sd.keepcalms.com/i/keep-calm-poster-not-found.png";
 
     return (
         <li className={s.card}>
-            <Link to={`/details/${media_type}/${id}`}>
+            <Link
+                state={{ from: location }}
+                to={`/details/${media_type}/${id}`}
+            >
                 <div className={s.card__rating}>
                     <img
                         src="/img/movieCard/star.svg"

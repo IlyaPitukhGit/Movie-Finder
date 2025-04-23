@@ -29,4 +29,12 @@
 
 .details_breadLink {
     color: var(--Primary-200, #beb7fb);
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.details__name span {
+    transform: scale(-1, 1);
+    display: flex;
 }

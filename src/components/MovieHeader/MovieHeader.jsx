@@ -1,11 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { useRef } from "react";
+import Icon from "../icons/Icon";
 
 import s from "./movieHeader.module.css";
 
 function MovieHeader({ data }) {
+    const location = useLocation();
+    const backLinkLocationRef = useRef(location.state?.from ?? "/");
+
     if (!data) return <p>Loading content...</p>;
     const { backdrop_path, title, name, poster_path } = data;
-    console.log(data);
 
     const image = backdrop_path
         ? `https://image.tmdb.org/t/p/w1280${backdrop_path}`
@@ -19,8 +23,15 @@ function MovieHeader({ data }) {
                 }}
             >
                 <div className={s.details__name}>
-                    <NavLink className={s.details_breadLink}>Home</NavLink> /{" "}
-                    <NavLink className={s.details_breadLink}>Movies</NavLink>
+                    <NavLink
+                        to={backLinkLocationRef.current}
+                        className={s.details_breadLink}
+                    >
+                        <span>
+                            <Icon name="arrow-right" size={12} />
+                        </span>{" "}
+                        Back
+                    </NavLink>
                     <h1 className={s.details__title}>{title ?? name}</h1>
                 </div>
             </div>

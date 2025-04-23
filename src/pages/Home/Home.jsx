@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import SelectCategory from "../../components/SelectCategory/SelectCategory";
 import MoviesList from "../../components/MovieList/MovieList";
 import s from "./home.module.css";
