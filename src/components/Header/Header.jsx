@@ -13,13 +13,19 @@ function Header() {
                 <nav className={s.nav}>
                     <ul className={s.nav__list}>
                         <li className={s.nav__item}>
-                            <NavLink className={s.nav__link}>Home</NavLink>
+                            <NavLink to="/" className={s.nav__link}>
+                                Home
+                            </NavLink>
                         </li>
                         <li className={s.nav__item}>
-                            <NavLink className={s.nav__link}>Movies</NavLink>
+                            <NavLink to="/movies" className={s.nav__link}>
+                                Movies
+                            </NavLink>
                         </li>
                         <li className={s.nav__item}>
-                            <NavLink className={s.nav__link}>TV Shows</NavLink>
+                            <NavLink to="/tv" className={s.nav__link}>
+                                TV Shows
+                            </NavLink>
                         </li>
                         <li className={s.nav__item}>
                             <NavLink className={s.nav__link}>

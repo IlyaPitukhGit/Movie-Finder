@@ -1,0 +1,45 @@
+.form {
+    position: relative;
+    max-width: 28.6%;
+    margin-bottom: 3rem;
+}
+.input {
+    composes: caption from global;
+    background-color: transparent;
+
+    border-radius: 12px;
+    border: 1px solid var(--Grey-700, #323b54);
+    background: var(--Black-10, rgba(0, 0, 0, 0.1));
+    padding: 1.5rem 1rem 1.5rem 3.5rem;
+    color: var(--Grey-600, #475069);
+    transition: all 0.1s ease 0s;
+    width: 100%;
+}
+
+.input:focus {
+    border: 1px solid var(--Primary-400, #7b6ef6);
+    box-shadow: 0 0 10px rgba(123, 110, 246, 0.3);
+    color: #fff;
+}
+
+.input::placeholder {
+    color: var(--Grey-600, #475069);
+}
+
+.input:focus::placeholder {
+    color: var(--Primary-400, #7b6ef6);
+}
+.button {
+    background-color: transparent;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: transparent;
+    color: fieldtext !important;
+}

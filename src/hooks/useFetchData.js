@@ -7,6 +7,10 @@ export const useFetchData = (endpoint) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if (!endpoint) {
+            setLoading(false);
+            return;
+        }
         const getData = async () => {
             try {
                 setLoading(true);

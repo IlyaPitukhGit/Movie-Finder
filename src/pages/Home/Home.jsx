@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import SelectCategory from "../../components/SelectCategory/SelectCategory";
 import MoviesList from "../../components/MovieList/MovieList";
+import Searchbar from "../../components/SearchBar/SearchBar";
 import s from "./home.module.css";
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
                         porro, culpa placeat ea distinctio ducimus. Doloribus,
                         consectetur recusandae.
                     </p>
+                    <Searchbar />
                     <SelectCategory />
                     <MoviesList />
                 </div>

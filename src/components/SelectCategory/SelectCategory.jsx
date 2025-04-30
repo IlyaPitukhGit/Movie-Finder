@@ -18,6 +18,18 @@ function SelectCategory() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const activeCategory = searchParams.get("category") ?? "all";
+
+    const handleCategoryChange = (newCategory) => {
+        const newParams = new URLSearchParams(searchParams);
+
+        // 1. Оновлюємо категорію
+        newParams.set("category", newCategory);
+
+        // 2. Видаляємо параметр "query" (опціонально)
+        // newParams.delete("query"); // Розкоментуйте, якщо потрібно скидати пошук
+
+        setSearchParams(newParams);
+    };
     return (
         <div className={s.button__container}>
             {categories.map(({ label, value }) => {
@@ -25,7 +37,7 @@ function SelectCategory() {
                     <button
                         key={value}
                         className={makeButtonClassName(activeCategory, value)}
-                        onClick={() => setSearchParams({ category: value })}
+                        onClick={() => handleCategoryChange(value)}
                     >
                         {label}
                     </button>
