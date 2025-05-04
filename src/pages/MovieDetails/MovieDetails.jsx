@@ -5,6 +5,8 @@ import s from "./movieDetails.module.css";
 
 import MovieHeader from "../../components/MovieHeader/MovieHeader";
 import MovieContent from "../../components/MovieContent/MovieContent";
+import TVContent from "../../components/MovieContent/TVContent";
+
 function MovieDetails() {
     const { type, movieId } = useParams();
 
@@ -16,7 +18,11 @@ function MovieDetails() {
         <section className={s.details}>
             <div className={s.container}>
                 <MovieHeader data={data} />
-                <MovieContent data={data} />
+                {type === "movie" ? (
+                    <MovieContent data={data} />
+                ) : (
+                    <TVContent data={data} />
+                )}
             </div>
         </section>
     );

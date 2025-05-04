@@ -16,8 +16,6 @@ const MoviesList = () => {
 
     if (query) {
         let mediaType = "multi";
-
-        // Визначаємо тип пошуку на основі категорії (якщо це головна сторінка)
         if (location.pathname === "/") {
             switch (category) {
                 case "popular-movies":
@@ -30,13 +28,25 @@ const MoviesList = () => {
                     mediaType = "multi";
             }
         } else {
-            // Для сторінок /movies та /tv-shows
             mediaType = location.pathname === "/movies" ? "movie" : "tv";
         }
-
         endpoint = `/search/${mediaType}?query=${encodeURIComponent(
             query
         )}&language=en-US`;
+    } else if (location.pathname === "/") {
+        switch (category) {
+            case "all":
+                endpoint = "/trending/all/day?language=en-US";
+                break;
+            case "popular-movies":
+                endpoint = "/trending/movie/day?language=en-US";
+                break;
+            case "popular-tv-shows":
+                endpoint = "/trending/tv/day?language=en-US";
+                break;
+            default:
+                endpoint = "/trending/all/day?language=en-US";
+        }
     }
 
     const { data, loading, error } = useFetchData(endpoint);

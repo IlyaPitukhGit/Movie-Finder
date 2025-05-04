@@ -54,3 +54,7 @@
     composes: body-large from global;
     color: var(--Grey-100, #c3c8d4);
 }
+
+.list__wrapper {
+    display: flex;
+}

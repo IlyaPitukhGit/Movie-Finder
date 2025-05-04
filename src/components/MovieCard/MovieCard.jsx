@@ -15,6 +15,30 @@ function MovieCard({
     },
 }) {
     const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const category = searchParams.get("category") ?? "all";
+
+    const currentPath = location.pathname;
+    let type = media_type;
+
+    if (!type) {
+        if (currentPath === "/movies") {
+            type = "movie";
+        } else if (currentPath === "/tv-shows") {
+            type = "tv";
+        } else {
+            switch (category) {
+                case "popular-movies":
+                    type = "movie";
+                    break;
+                case "popular-tv-shows":
+                    type = "tv";
+                    break;
+                default:
+                    type = "movie"; // Фолбек для головної сторінки з категорією "all"
+            }
+        }
+    }
 
     const image = poster_path
         ? `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -22,10 +46,7 @@ function MovieCard({
 
     return (
         <li className={s.card}>
-            <Link
-                state={{ from: location }}
-                to={`/details/${media_type}/${id}`}
-            >
+            <Link state={{ from: location }} to={`/details/${type}/${id}`}>
                 <div className={s.card__rating}>
                     <img
                         src="/img/movieCard/star.svg"
