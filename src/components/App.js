@@ -7,21 +7,27 @@ import Home from "../pages/Home/Home";
 import MovieDetails from "../pages/MovieDetails/MovieDetails";
 import Movies from "../pages/Movies/Movies";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
     return (
         <>
-            <ScrollToTop />
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="/:category" element={<Home />} />
-                    <Route path="movies" element={<Movies />} />
-                    <Route
-                        path="/details/:type/:movieId"
-                        element={<MovieDetails />}
-                    ></Route>
-                </Route>
-            </Routes>
+            <QueryClientProvider client={queryClient}>
+                <ScrollToTop />
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<Home />} />
+                        <Route path="/:category" element={<Home />} />
+                        <Route path="movies" element={<Movies />} />
+                        <Route
+                            path="/details/:type/:movieId"
+                            element={<MovieDetails />}
+                        ></Route>
+                    </Route>
+                </Routes>
+            </QueryClientProvider>
         </>
     );
 }

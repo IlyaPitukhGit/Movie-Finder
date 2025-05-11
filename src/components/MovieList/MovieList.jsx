@@ -49,7 +49,7 @@ const MoviesList = () => {
         }
     }
 
-    const { data, loading, error } = useFetchData(endpoint);
+    const { data, isLoading, error } = useFetchData(endpoint);
 
     const isMultiSearch =
         location.pathname === "/" && // Головна сторінка
@@ -63,7 +63,7 @@ const MoviesList = () => {
           )
         : results;
 
-    if (loading) return <p>Loading...</p>;
+    if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
     return (
