@@ -52,8 +52,14 @@ function SelectCategory() {
     const activeCategory = searchParams.get("category") ?? "all";
 
     const handleCategoryChange = (newCategory) => {
-        const newParams = new URLSearchParams();
+        const newParams = new URLSearchParams(searchParams);
+
         newParams.set("category", newCategory);
+
+        if (searchParams.get("query")) {
+            newParams.set("query", searchParams.get("query"));
+        }
+
         setSearchParams(newParams);
     };
 

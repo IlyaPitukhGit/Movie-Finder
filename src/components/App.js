@@ -6,6 +6,7 @@ import Layout from "./Layout/Layout";
 import Home from "../pages/Home/Home";
 import MovieDetails from "../pages/MovieDetails/MovieDetails";
 import Movies from "../pages/Movies/Movies";
+import TVShows from "../pages/TvShows/Movies";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -21,6 +22,7 @@ function App() {
                         <Route index element={<Home />} />
                         <Route path="/:category" element={<Home />} />
                         <Route path="movies" element={<Movies />} />
+                        <Route path="tv" element={<TVShows />} />
                         <Route
                             path="/details/:type/:movieId"
                             element={<MovieDetails />}
