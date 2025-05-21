@@ -28,7 +28,7 @@ function MovieHeader({ data }) {
                         className={s.details_breadLink}
                     >
                         <span>
-                            <Icon name="arrow-right" size={12} />
+                            <Icon name="arrow-right" size={20} />
                         </span>{" "}
                         Back
                     </NavLink>

@@ -4,13 +4,16 @@ import { useFetchData } from "../../hooks/useFetchData";
 import s from "./movieList.module.css";
 
 import MovieCard from "../MovieCard/MovieCard";
+import Pagination from "../Pagination/Pagination";
 
 const MoviesList = () => {
     const [searchParams] = useSearchParams();
-    const category = searchParams.get("category") ?? "all";
+
     const location = useLocation();
 
-    const query = searchParams.get("query");
+    const category = searchParams.get("category") ?? "all";
+    const query = searchParams.get("query") ?? "";
+    const page = Number(searchParams.get("page") ?? "1");
 
     let endpoint = null;
 
@@ -32,20 +35,20 @@ const MoviesList = () => {
         }
         endpoint = `/search/${mediaType}?query=${encodeURIComponent(
             query
-        )}&language=en-US`;
+        )}&language=en-US&page=${page}`;
     } else if (location.pathname === "/") {
         switch (category) {
             case "all":
-                endpoint = "/trending/all/day?language=en-US";
+                endpoint = `/trending/all/day?language=en-US&page=${page}`;
                 break;
             case "popular-movies":
-                endpoint = "/trending/movie/day?language=en-US";
+                endpoint = `/trending/movie/day?language=en-US&page=${page}`;
                 break;
             case "popular-tv-shows":
-                endpoint = "/trending/tv/day?language=en-US";
+                endpoint = `/trending/tv/day?language=en-US&page=${page}`;
                 break;
             default:
-                endpoint = "/trending/all/day?language=en-US";
+                endpoint = `/trending/all/day?language=en-US&page=${page}`;
         }
     }
 
@@ -67,11 +70,17 @@ const MoviesList = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <ul className={s.movie__list}>
-            {filteredResults.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
-            ))}
-        </ul>
+        <>
+            <ul className={s.movie__list}>
+                {filteredResults.map((movie) => (
+                    <MovieCard key={movie.id} movie={movie} />
+                ))}
+            </ul>
+            <Pagination
+                currentPage={page}
+                totalPages={data?.total_pages || 1}
+            />
+        </>
     );
 };
 

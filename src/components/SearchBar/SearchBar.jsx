@@ -14,8 +14,10 @@ function Searchbar() {
         const value = e.target.elements.search.value.trim();
         setSearchParams((prev) => {
             const newParams = new URLSearchParams(prev);
-            if (value) newParams.set("query", value);
-            else newParams.delete("query");
+            if (value) {
+                newParams.set("query", value);
+                newParams.set("page", "1");
+            } else newParams.delete("query");
             return newParams;
         });
     };

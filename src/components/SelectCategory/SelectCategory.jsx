@@ -55,6 +55,7 @@ function SelectCategory() {
         const newParams = new URLSearchParams(searchParams);
 
         newParams.set("category", newCategory);
+        newParams.set("page", "1");
 
         if (searchParams.get("query")) {
             newParams.set("query", searchParams.get("query"));

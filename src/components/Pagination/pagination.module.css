@@ -1,0 +1,38 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.pageButton,
+.navButton {
+    composes: body-large from global;
+    color: #ebeef5;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(32, 40, 62, 0.8);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.navButton:first-child {
+    transform: scale(-1, 1);
+}
+
+.pageButton {
+    composes: body-regular from global;
+}
+
+.pageButton:hover,
+.navButton:hover {
+    background-color: var(--Primary-400, #7b6ef6);
+}
+
+.active {
+    background-color: var(--Primary-400, #7b6ef6);
+    color: white;
+}
