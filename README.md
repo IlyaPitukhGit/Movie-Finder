@@ -1,27 +1,30 @@
-# 🎬MovieFinder – A React Movie Search App
+-----
 
-Кінотека нового покоління з **інтелектуальним пошуком**, **адаптивною архітектурою** та **просунутими техніками кешування**.
+# 🎬 MovieFinder – A React Movie Search App
 
----
+A next-generation movie library featuring **intelligent search**, an **adaptive architecture**, and **advanced caching techniques**.
 
-## 🚀 Ключові технології
+-----
 
-* **Оптимізований State Management**:
-    Використання `@tanstack/react-query` для стратегічного кешування (`staleTime: 5 хв`) та автоматичного `refetch` при фокусі вікна.
+## 🚀 Key Technologies
 
-* **Маршрутизація Enterprise-рівня**:
-    Nested routes з динамічними параметрами (`/details/:type/:movieId`) + синхронізація стану з URL через `URLSearchParams`.
+  * **Optimized State Management**:
+    Utilizes `@tanstack/react-query` for strategic caching (`staleTime: 5 min`) and automatic `refetch` on window focus.
 
-* **Перформанс-орієнтований UI**:
-    * Дебаунс пошуку на рівні компонента `<SearchBar>` (`300ms`).
-    * Пагінація з "вікном" у 5 сторінок (`Pagination.jsx`).
-    * Автоматичний скрол до верху при навігації (`ScrollToTop` компонент).
+  * **Enterprise-Grade Routing**:
+    Nested routes with dynamic parameters (`/details/:type/:movieId`) and state synchronization with the URL via `URLSearchParams`.
 
----
+  * **Performance-Oriented UI**:
 
-## 🛠️ Архітектурні рішення
+      * Search debouncing at the `<SearchBar>` component level (`300ms`).
+      * Pagination with a 5-page "window" (`Pagination.jsx`).
+      * Automatic scroll-to-top on navigation (`ScrollToTop` component).
 
-1.  **Модульна структура API-сервісу** (`services/api.js`)
+-----
+
+## 🛠️ Architectural Solutions
+
+1.  **Modular API Service Structure** (`services/api.js`)
 
     ```javascript
     export const fetchData = async (endpoint) => {
@@ -33,82 +36,84 @@
         return await response.json();
       } catch (error) {
         console.error("API Error:", error);
-        throw error; // Передача помилки до Error Boundary
+        throw error; // Propagate error to Error Boundary
       }
     };
     ```
 
-    * **Безпека**: API-ключ інкапсульований на рівні сервісу.
-    * **Обробка помилок**: Уніфікований `error handling` з прокидуванням помилок.
+      * **Security**: API key encapsulated at the service level.
+      * **Error Handling**: Unified `error handling` with error propagation.
 
-2.  **Кастомний хук `useFetchData` (HOC-патерн)**
+2.  **Custom `useFetchData` Hook (HOC-pattern)**
 
     ```javascript
     export const useFetchData = (endpoint) => {
       return useQuery({
         queryKey: ["data", endpoint],
         queryFn: () => fetchData(endpoint),
-        staleTime: 300_000 // 5 хв кешу
+        staleTime: 300_000 // 5 min cache
       });
     };
     ```
 
-    * **Кешування на рівні запиту**: Унікальні `queryKey` для кожної ендпоінту.
-    * **Автоінвалідація**: Фоновий `refetch` при повторному відкритті додатку.
+      * **Query-Level Caching**: Unique `queryKey` for each endpoint.
+      * **Auto-Invalidation**: Background `refetch` upon re-opening the application.
 
-3.  **Динамічна маршрутизація** (`App.js`)
+3.  **Dynamic Routing** (`App.js`)
 
     ```javascript
     <Route path="/details/:type/:movieId" element={<MovieDetails />}>
     ```
 
-    * **Типозахищений роут**: Валідація `type` (movie/tv) на рівні компонента.
-    * **Контекстний рендеринг**: Умовний рендеринг `<TVContent>`/`<MovieContent>`.
+      * **Type-Safe Route**: `type` (movie/tv) validation at the component level.
+      * **Contextual Rendering**: Conditional rendering of `<TVContent>`/`<MovieContent>`.
 
----
+-----
 
-## 📈 Продуктивність
+## 📈 Performance
 
-| Метрика           | Значення       | Інструмент           |
-| :---------------- | :------------- | :------------------- |
-| Повторні запити   | ↓ 78%          | React Query DevTools |
-| Рендер-тайми      | < 50ms         | React Profiler       |
-| Бандл-сайз (prod) | 124KB (gzip)   | Webpack Analyzer     |
+| Metric            | Value        | Tool                |
+| :---------------- | :----------- | :------------------ |
+| Repeated Requests | ↓ 78%        | React Query DevTools |
+| Render Times      | \< 50ms       | React Profiler      |
+| Bundle Size (prod)| 124KB (gzip) | Webpack Analyzer    |
 
----
+-----
 
-## 🌟 Особливості реалізації
+## 🌟 Implementation Features
 
-* **Інтелектуальний пошук** (`SearchBar.jsx`):
-    * Гібридний пошук по `multi`/`movie`/`tv` залежно від контексту.
-    * Синхронізація з історією браузера через `URLSearchParams`.
+  * **Intelligent Search** (`SearchBar.jsx`):
 
-* **Адаптивна пагінація** (`Pagination.jsx`):
-    * Алгоритм "розумного" відображення сторінок:
+      * Hybrid search across `multi`/`movie`/`tv` depending on context.
+      * Synchronization with browser history via `URLSearchParams`.
+
+  * **Adaptive Pagination** (`Pagination.jsx`):
+
+      * "Smart" page display algorithm:
 
         ```javascript
         const visiblePages = 5;
         let start = Math.max(currentPage - Math.floor(visiblePages/2), 1);
         ```
 
-* **Типобезпечний MovieDetails**:
+  * **Type-Safe MovieDetails**:
 
     ```javascript
     const { type, movieId } = useParams();
-    const endpoint = `/${type}/${movieId}`; // Валідація через TypeScript-like підхід
+    const endpoint = `/${type}/${movieId}`; // Validation via TypeScript-like approach
     ```
 
----
+-----
 
-## 🧩 Технічний стек
+## 🧩 Technical Stack
 
-| Категорія     | Технології                                               |
-| :------------ | :------------------------------------------------------- |
-| **Ядро** | React v19.1.0, React Router v7.4.1, React Query 5                  |
-| **Стилізація** | CSS Modules |
-| **Інфраструктура** | Vite, ESLint, Prettier                                   |
-| **Мікросервіси** | TMDB API v3 (JWT-автентифікація через Bearer Token)      |
+| Category         | Technologies                                               |
+| :--------------- | :--------------------------------------------------------- |
+| **Core** | React v19.1.0, React Router v7.4.1, React Query 5          |
+| **Styling** | CSS Modules                                                |
+| **Infrastructure** | Vite, ESLint, Prettier                                     |
+| **Microservices**| TMDB API v3 (JWT-authentication via Bearer Token)          |
 
----
+-----
 
-© 2025 Movie Finder 
+© 2025 Movie Finder
